@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Treegarden';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/naverfont_10@1.0/Treegarden.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes width20{
+    0%{
+        max-width: 100%;
+    }
+    100%{
+        max-width: 0;
+    }
+}
+
+@keyframes width2fit{
+    0%{
+        max-width: 0;
+    }
+    100%{
+        max-width: 100%;
+    }
+}
+
+
+@keyframes keyHover{
+    0%{
+        background-color: #FFFFFF;
+    }
+    100%{
+        background-color: #C3C3C3;
+    }
+}
+@keyframes keyHoverCancel{
+    0%{
+        background-color: #C3C3C3;
+    }
+    100%{
+        background-color: #FFFFFF;
+    }
+}
+@keyframes menuKeyHover{
+    0%{
+        color: #FFFFFF;
+    }
+    100%{
+        color: #C3C3C3;
+    }
+}
+@keyframes menuKeyHoverCancel{
+    0%{
+        color: #C3C3C3;
+    }
+    100%{
+        color: #FFFFFF;
+    }
+}
+
+
+.hover:hover {
+    animation: keyHover 0.5s forwards;
+    >.text._1 {
+        animation: width2fit 1s forwards;
+    }
+    >.text._2 {
+        animation: width20 0.5s forwards;
+    }
+}
+.hoverCancel:not(:hover) {
+    animation: keyHoverCancel 0.5s forwards;
+    >.text._1 {
+        animation: width20 0.5s forwards;
+    }
+    >.text._2 {
+        animation: width2fit 1s forwards;
+    }
+}
+.menuHover:hover>.text {
+    animation: menuKeyHover 0.5s forwards;
+}
+.menuHoverCancel:not(:hover)>.text {
+    animation: menuKeyHoverCancel 0.5s forwards;
+}
+
+.white {
+    color: #FFFFFF
+}
+
+.blue {
+    color: #4265E3;
+}
+
+.lightgray {
+    color: #C3C3C3;
+}
