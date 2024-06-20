@@ -3,6 +3,9 @@ const animation_index = {
         init: (callback, ...args) => {
             window.scrollTo({top: 0});
 
+            scrollDirection = 0;
+            lastScrollPosition = [];
+
             section_1 = 0;
             section_2 = document.getElementById("section_2").offsetTop;
             section_3 = document.getElementById("section_3").offsetTop;
@@ -176,13 +179,27 @@ const animation_index = {
         ],
         scroll: [
             {
+                selector: "document",
+                animation: (e, el) => {
+                    if (lastScrollPosition.length === 0) {
+                        lastScrollPosition = [window.scrollY, 0];
+                        return;
+                    }
+                    lastScrollPosition = [window.scrollY, lastScrollPosition[0]];
+                    if (lastScrollPosition.reduce((a, b) => a-b) > 0)
+                        scrollDirection = 2;
+                    else
+                        scrollDirection = 1;
+                    console.log(scrollDirection);
+                }
+            },
+            {
                 selector: "#section_3>.box_available>.right",
                 animation: (e, el) => {
                     const adjustBlock = ((document.querySelector("#section_3>.box_available>.left>.upper>.menu").getBoundingClientRect().width-50*7)/7+50);
                     const profilesTmp = profiles.slice();
                     const scrollX = document.querySelector("#section_3>.box_available>.right").scrollLeft + document.querySelector("#section_3>.box_available>.right").getBoundingClientRect().width/7;
                     profilesTmp.sort((a, b) => Math.abs(a - scrollX) - Math.abs(b - scrollX));
-                    console.log(scrollX);
                     document.querySelector("#section_3>.box_available>.left>.upper>.menubar>.adjuster").animate([{width: (adjustBlock*(profiles.indexOf(profilesTmp[0])))+"px"}], {duration: 500, fill: "both", easing: "ease-in-out" });
                 }
             }
@@ -194,7 +211,13 @@ const animation_index = {
                     const scrollList = [section_1, section_2, section_3, section_4];
                     const scrollY = window.scrollY;
                     scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-                    window.scrollTo({top: scrollList[0], behavior: "smooth"});
+                    if ((scrollList[0] - scrollY) === 0) {
+                        return;
+                    } else if (scrollDirection === 1) {
+                        window.scrollTo({top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                    }else if (scrollDirection === 2) {
+                        window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                    }
                 }
             }
             // {
