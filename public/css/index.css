@@ -235,7 +235,7 @@ html {
             >.showbox {
                 position: absolute;
                 right: 6%;
-                bottom: 16%;
+                bottom: 10%;
 
                 height: 40%;
                 width: 50%;
@@ -784,6 +784,21 @@ html {
                         color: white;
                         font-size: 0.8rem;
                     }
+                }
+                >.el.flag>.icon>img {
+                    width: 50%;
+                }
+                >.el.lumen>.icon>img {
+                    width: 60%;
+                }
+                >.el.fliplumen>.icon>img {
+                    width: 70%;
+                }
+                >.el.studyengine>.icon>img {
+                    width: 40%;
+                }
+                >.el.newlumen>.icon>img {
+                    width: 30%;
                 }
             }
         }
