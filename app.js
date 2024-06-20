@@ -36,7 +36,7 @@ const http_errors_1 = __importDefault(require("http-errors"));
 const config = __importStar(require("./config.json"));
 const api_route_1 = require("./route/api.route");
 const service_route_1 = require("./route/service.route");
-const PORT = 3000;
+const PORT = 443;
 const app = express.default();
 // view engine setup
 app.set("views", path_1.default.join(__dirname, "./views"));

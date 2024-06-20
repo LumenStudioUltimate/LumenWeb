@@ -14,7 +14,7 @@ import {apiRouter} from "./route/api.route";
 import {serviceRouter} from "./route/service.route";
 
 
-const PORT = 3000;
+const PORT = 443;
 const app = express.default();
 
 // view engine setup
