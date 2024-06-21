@@ -3,6 +3,7 @@ const animation_index = {
         init: (callback, ...args) => {
             window.scrollTo({top: 0});
 
+            isScrolling = false;
             scrollDirection = 0;
             lastScrollPosition = [];
 
@@ -181,6 +182,7 @@ const animation_index = {
             {
                 selector: "document",
                 animation: (e, el) => {
+                    isScrolling = true;
                     if (lastScrollPosition.length === 0) {
                         lastScrollPosition = [window.scrollY, 0];
                         return;
@@ -208,16 +210,21 @@ const animation_index = {
             {
                 selector: "document",
                 animation: (e, el) => {
-                    const scrollList = [section_1, section_2, section_3, section_4];
-                    const scrollY = window.scrollY;
-                    scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-                    if ((scrollList[0] - scrollY) === 0) {
-                        return;
-                    } else if (scrollDirection === 1) {
-                        window.scrollTo({top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth"});
-                    }else if (scrollDirection === 2) {
-                        window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
-                    }
+                    isScrolling = false;
+                    setTimeout(() => {
+                        if (isScrolling) return;
+                        const scrollList = [section_1, section_2, section_3, section_4];
+                        const scrollY = window.scrollY;
+                        scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+                        window.scrollTo({top: scrollList[0], behavior: "smooth"});
+                        // if ((scrollList[0] - scrollY) === 0) {
+                        //     return;
+                        // } else if (scrollDirection === 1) {
+                        //     window.scrollTo({top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                        // }else if (scrollDirection === 2) {
+                        //     window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                        // }
+                    }, 1000);
                 }
             }
             // {
