@@ -3,14 +3,17 @@ const animation_index = {
         init: (callback, ...args) => {
             window.scrollTo({top: 0});
 
-            isScrolling = false;
+            scrollCount = 0;
             scrollDirection = 0;
+            scrollStart = null;
+            isScrolling = false;
             lastScrollPosition = [];
 
             section_1 = 0;
             section_2 = document.getElementById("section_2").offsetTop;
             section_3 = document.getElementById("section_3").offsetTop;
             section_4 = document.getElementById("section_4").offsetTop;
+            section_height = section_2;
 
             Array.from(document.querySelectorAll("#section_3>.box_available>.right>.profileList>.profile")).forEach(e => {
                 profiles.push(e.offsetLeft);
@@ -182,7 +185,11 @@ const animation_index = {
             {
                 selector: "document",
                 animation: (e, el) => {
+                    scrollCount++;
                     isScrolling = true;
+                    if (scrollCount === 1) {
+                        scrollStart = window.scrollY;
+                    }
                     if (lastScrollPosition.length === 0) {
                         lastScrollPosition = [window.scrollY, 0];
                         return;
@@ -216,14 +223,18 @@ const animation_index = {
                         const scrollList = [section_1, section_2, section_3, section_4];
                         const scrollY = window.scrollY;
                         scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-                        window.scrollTo({top: scrollList[0], behavior: "smooth"});
-                        // if ((scrollList[0] - scrollY) === 0) {
-                        //     return;
-                        // } else if (scrollDirection === 1) {
-                        //     window.scrollTo({top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth"});
-                        // }else if (scrollDirection === 2) {
-                        //     window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
-                        // }
+                        if (Math.abs(scrollStart-window.scrollY)>section_height) {
+                            window.scrollTo({top: scrollList[0], behavior: "smooth"});
+                        }else {
+                            if ((scrollList[0] - scrollY) === 0) {
+                                return;
+                            } else if (scrollDirection === 1) {
+                                window.scrollTo({top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                            }else if (scrollDirection === 2) {
+                                window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                            }
+                        }
+                        scrollCount = 0;
                     }, 1000);
                 },
                 nomobile: null
