@@ -225,7 +225,8 @@ const animation_index = {
                         //     window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
                         // }
                     }, 1000);
-                }
+                },
+                nomobile: null
             }
             // {
             //     selector: "#section_3>.box_available>.right",

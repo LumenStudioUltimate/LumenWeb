@@ -16,14 +16,16 @@ function init() {
 
     Object.keys(animation_index.events).forEach(eventName => {
         Array.from(animation_index.events[eventName]).forEach(eventHandler => {
+            let animation = eventHandler.animation;
+            if (eventHandler.hasOwnProperty("nomobile")) animation = (...args) => {if (window.innerWidth <= 720) return; eventHandler.animation(...args);};
             if (eventHandler.selector === "document") {
-                document.addEventListener(eventName, (e) => eventHandler.animation(e, document));
+                document.addEventListener(eventName, (e) => animation(e, document));
                 return;
             }
             if (eventHandler.hasOwnProperty("all"))
-                document.querySelectorAll(eventHandler.selector).forEach(element => element.addEventListener(eventName, (e) => eventHandler.animation(e, element)));
+                document.querySelectorAll(eventHandler.selector).forEach(element => element.addEventListener(eventName, (e) => animation(e, element)));
             else
-                document.querySelector(eventHandler.selector).addEventListener(eventName, (e) => eventHandler.animation(e, document.querySelector(eventHandler.selector)));
+                document.querySelector(eventHandler.selector).addEventListener(eventName, (e) => animation(e, document.querySelector(eventHandler.selector)));
         });
     });
 }
