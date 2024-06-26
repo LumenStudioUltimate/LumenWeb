@@ -23,6 +23,11 @@ module.exports = {
         "prefer-const": [
             "warn"
         ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "no-prototype-builtins": "off",
         "no-undef": "off",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "warn",

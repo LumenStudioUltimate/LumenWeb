@@ -105,6 +105,7 @@ html {
                     display: inline-block;
                     height: 5vh;
                     width: 12%;
+                    max-width: 100%;
 
                     align-content: center;
                     margin-top: 5vh;
@@ -507,7 +508,6 @@ html {
                         width: 13%;
 
                         border-radius: 40px;
-
                         background-color: white;
 
                         overflow: hidden;
@@ -805,4 +805,94 @@ html {
     }
 
     z-index: -10;
+}
+
+@media screen and (max-height: 790px) {
+    .container>.section._2>.box_available>.context>.about {
+        margin-top: 5%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    html {
+        font-size: clamp(0.5rem, 1.5vh, 2rem);
+    }
+    .header {
+        display: flex;
+        justify-content: center;
+        >.left>*:not(.logo) {
+            display: none;
+        }
+        >.right {
+            display: none;
+        }
+    }
+
+    .container {
+        >.section._1>.context>.apply>.btn {
+            display: inline-block;
+            width: 50%;
+        }
+        >.section._2 {
+            height: 200vh;
+            top: -100vh;
+            >.box_available {
+                >.context>*:not(.intro):not(.mobile) {
+                    display: none;
+                }
+                >.showbox {
+                    display: none;
+                }
+                >.context>.intro>.description {
+                    >.main>br {
+                        display: block;
+                    }
+                    >.description>br {
+                        display: block;
+                    }
+                }
+
+                >.context>.mobile {
+                    display: block;
+
+                    margin-top: 20%;
+
+
+                    >*>.showbox {
+                        background-color: white;
+                        border-radius: 30px;
+
+                        padding: 10%;
+                    }
+                    >.vision {
+                        >.title {
+                            font-size: 2rem;
+                            font-weight: 600;
+                        }
+                        >.showbox {
+                            >.body {
+                                margin-top: 8%;
+                                text-align: center;
+                                >.main {
+                                    font-family: Treegarden;
+                                    font-size: 2rem;
+                                    font-weight: 800;
+                                }
+                                >hr {
+                                    width: 30%;
+                                    border: 1px solid black;
+                                    margin-top: 3%;
+                                    margin-bottom: 3%;
+                                }
+                                >.des1 {
+                                    font-size: 1rem;
+                                }
+                            }
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

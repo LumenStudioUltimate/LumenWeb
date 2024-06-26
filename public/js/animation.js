@@ -1,7 +1,7 @@
 const animation_index = {
     intro: {
         init: (callback, ...args) => {
-            window.scrollTo({top: 0});
+            window.scrollTo({ top: 0 });
 
             scrollCount = 0;
             scrollDirection = 0;
@@ -52,12 +52,12 @@ const animation_index = {
             if (typeof callback === "function") setTimeout(() => callback(...args), 3000);
         },
         showBtn: (callback, ...args) => {
-            document.getElementById("btn_apply").animate([ { opacity: "0" }, {opacity: "1" } ], {duration: 2000, fill: "both", easing: "ease-in" });
+            document.getElementById("btn_apply").animate([ { opacity: "0" }, { opacity: "1" } ], { duration: 2000, fill: "both", easing: "ease-in" });
             if (typeof callback === "function") setTimeout(() => callback(...args), 2000);
         },
         scroll_guide: (callback, ...args) => {
-            document.getElementById("scroll_guide").animate([ { transform: "translateY(100px)", opacity: "0" }, { transform: "translateY(-10px)", opacity: "0.6" } ], {duration: 1000, fill: "both", easing: "ease-out" });
-            setTimeout(() => {document.getElementById("scroll_guide").animate([ { transform: "translateY(-10px)" }, { transform: "translateY(0px)" } ], {duration: 1000, fill: "both", easing: "ease-in-out" });}, 1100);
+            document.getElementById("scroll_guide").animate([ { transform: "translateY(100px)", opacity: "0" }, { transform: "translateY(-10px)", opacity: "0.6" } ], { duration: 1000, fill: "both", easing: "ease-out" });
+            setTimeout(() => {document.getElementById("scroll_guide").animate([ { transform: "translateY(-10px)" }, { transform: "translateY(0px)" } ], { duration: 1000, fill: "both", easing: "ease-in-out" });}, 1100);
             if (typeof callback === "function") setTimeout(() => callback(...args), 2100);
         }
     },
@@ -66,31 +66,31 @@ const animation_index = {
             {
                 selector: "#btn_logo",
                 animation: (e, el) => {
-                    window.scrollTo({top: section_1, behavior: "smooth"});
+                    window.scrollTo({ top: section_1, behavior: "smooth" });
                 }
             },
             {
                 selector: "#btn_about",
                 animation: (e, el) => {
-                    window.scrollTo({top: section_2, behavior: "smooth"});
+                    window.scrollTo({ top: section_2, behavior: "smooth" });
                 }
             },
             {
                 selector: "#btn_team",
                 animation: (e, el) => {
-                    window.scrollTo({top: section_3, behavior: "smooth"});
+                    window.scrollTo({ top: section_3, behavior: "smooth" });
                 }
             },
             {
                 selector: "#btn_project",
                 animation: (e, el) => {
-                    window.scrollTo({top: section_4, behavior: "smooth"});
+                    window.scrollTo({ top: section_4, behavior: "smooth" });
                 }
             },
             {
                 selector: "#section_3>.box_available>.left>.upper>.menu>img",
                 animation: (e, el) => {
-                    document.querySelector("#section_3>.box_available>.right").scrollTo({left: document.querySelector("#section_3>.box_available>.right>.profileList>.profile."+el.alt).offsetLeft, behavior: "smooth"});
+                    document.querySelector("#section_3>.box_available>.right").scrollTo({ left: document.querySelector("#section_3>.box_available>.right>.profileList>.profile."+el.alt).offsetLeft, behavior: "smooth" });
                 },
                 all: null
             }
@@ -116,15 +116,15 @@ const animation_index = {
                 selector: ".section._2 .menu>.m_element",
                 animation: (e, el) => {
                     Array.from(el.children).forEach(elc => {
-                        elc.animate([{ left: "calc(100% - "+elc.getBoundingClientRect().width+"px)" }], {duration: 500, fill: "both", easing: "ease-in-out" });
+                        elc.animate([{ left: "calc(100% - "+elc.getBoundingClientRect().width+"px)" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     });
                     const whatMenu = Array.from(el.classList).filter(c => c !== "m_element")[0];
                     const menus = Array.from(document.querySelector("#section_2>.box_available").children).filter(ce => ce.classList.contains("showbox"));
                     menus.forEach((menu) => {
                         if (menu.classList.contains(whatMenu))
-                            menu.animate([{opacity: "1"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                            menu.animate([{ opacity: "1" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                         else
-                            menu.animate([{opacity: "0"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                            menu.animate([{ opacity: "0" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     });
                 },
                 all: null
@@ -132,11 +132,11 @@ const animation_index = {
             {
                 selector: "#section_3>.box_available>.right>.profileList>.profile",
                 animation: (e, el) => {
-                    Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname")).forEach(ce => ce.animate([{height: "100%", borderRadius: "40px"}], {duration: 500, fill: "both", easing: "ease-in-out" }));
-                    Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("head"))[0].children).filter(ce => ce.classList.contains("right"))[0].animate([{bottom: "30%"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                    Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname")).forEach(ce => ce.animate([{ height: "100%", borderRadius: "40px" }], { duration: 500, fill: "both", easing: "ease-in-out" }));
+                    Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("head"))[0].children).filter(ce => ce.classList.contains("right"))[0].animate([{ bottom: "30%" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     setTimeout(() => {
-                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("text"))[0].animate([{maxWidth: "0", right: "40%"}], {duration: 500, fill: "both", easing: "ease-in-out" });
-                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("guide"))[0].animate([{maxWidth: "100%"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("text"))[0].animate([{ maxWidth: "0", right: "40%" }], { duration: 500, fill: "both", easing: "ease-in-out" });
+                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("guide"))[0].animate([{ maxWidth: "100%" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     }, 600);
                 },
                 all: null
@@ -163,7 +163,7 @@ const animation_index = {
                 selector: ".section._2 .menu>.m_element",
                 animation: (e, el) => {
                     Array.from(el.children).forEach(elc => {
-                        elc.animate([{ left: "0%", transfrom: "translateX(0%)" }], {duration: 500, fill: "both", easing: "ease-in-out" });
+                        elc.animate([{ left: "0%", transfrom: "translateX(0%)" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     });
                 },
                 all: null
@@ -171,11 +171,11 @@ const animation_index = {
             {
                 selector: "#section_3>.box_available>.right>.profileList>.profile",
                 animation: (e, el) => {
-                    Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].animate([{height: "20%", borderBottomLeftRadius: "0", borderBottomRightRadius: "0"}], {duration: 700, fill: "both", easing: "ease-in-out" });
-                    Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("head"))[0].children).filter(ce => ce.classList.contains("right"))[0].animate([{bottom: "0%"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                    Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].animate([{ height: "20%", borderBottomLeftRadius: "0", borderBottomRightRadius: "0" }], { duration: 700, fill: "both", easing: "ease-in-out" });
+                    Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("head"))[0].children).filter(ce => ce.classList.contains("right"))[0].animate([{ bottom: "0%" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     setTimeout(() => {
-                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("text"))[0].animate([{maxWidth: "100%", right: "0%"}], {duration: 500, fill: "both", easing: "ease-in-out" });
-                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("guide"))[0].animate([{maxWidth: "0"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("text"))[0].animate([{ maxWidth: "100%", right: "0%" }], { duration: 500, fill: "both", easing: "ease-in-out" });
+                        Array.from(Array.from(Array.from(el.children).filter(ce => ce.classList.contains("main"))[0].children).filter(ce => ce.classList.contains("nickname"))[0].children).filter(ce => ce.classList.contains("guide"))[0].animate([{ maxWidth: "0" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                     }, 600);
                 },
                 all: null
@@ -209,7 +209,7 @@ const animation_index = {
                     const profilesTmp = profiles.slice();
                     const scrollX = document.querySelector("#section_3>.box_available>.right").scrollLeft + document.querySelector("#section_3>.box_available>.right").getBoundingClientRect().width/7;
                     profilesTmp.sort((a, b) => Math.abs(a - scrollX) - Math.abs(b - scrollX));
-                    document.querySelector("#section_3>.box_available>.left>.upper>.menubar>.adjuster").animate([{width: (adjustBlock*(profiles.indexOf(profilesTmp[0])))+"px"}], {duration: 500, fill: "both", easing: "ease-in-out" });
+                    document.querySelector("#section_3>.box_available>.left>.upper>.menubar>.adjuster").animate([{ width: (adjustBlock*(profiles.indexOf(profilesTmp[0])))+"px" }], { duration: 500, fill: "both", easing: "ease-in-out" });
                 }
             }
         ],
@@ -224,14 +224,14 @@ const animation_index = {
                         const scrollY = window.scrollY;
                         scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
                         if (Math.abs(scrollStart-window.scrollY)>section_height) {
-                            window.scrollTo({top: scrollList[0], behavior: "smooth"});
+                            window.scrollTo({ top: scrollList[0], behavior: "smooth" });
                         }else {
                             if ((scrollList[0] - scrollY) === 0) {
                                 return;
                             } else if (scrollDirection === 1) {
-                                window.scrollTo({top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                                window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
                             }else if (scrollDirection === 2) {
-                                window.scrollTo({top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth"});
+                                window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
                             }
                         }
                         scrollCount = 0;

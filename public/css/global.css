@@ -83,6 +83,10 @@
     animation: menuKeyHoverCancel 0.5s forwards;
 }
 
+.display_none {
+    display: none;
+}
+
 .white {
     color: #FFFFFF
 }
