@@ -52,7 +52,8 @@ const animation_index = {
             if (typeof callback === "function") setTimeout(() => callback(...args), 3000);
         },
         showBtn: (callback, ...args) => {
-            document.getElementById("btn_apply").animate([ { opacity: "0" }, { opacity: "1" } ], { duration: 2000, fill: "both", easing: "ease-in" });
+            document.getElementById("btn_apply")
+                .animate([ { opacity: "0" }, { opacity: "1" } ], { duration: 2000, fill: "both", easing: "ease-in" });
             if (typeof callback === "function") setTimeout(() => callback(...args), 2000);
         },
         scroll_guide: (callback, ...args) => {
@@ -98,7 +99,7 @@ const animation_index = {
         mouseover: [
             {
                 selector: ".clickable",
-                animation: (e, el) => {
+                animation: (e, el) => { // element
                     el.classList.add("hover");
                     el.classList.remove("hoverCancel");
                 },
@@ -182,26 +183,38 @@ const animation_index = {
             }
         ],
         scroll: [
-            {
-                selector: "document",
-                animation: (e, el) => {
-                    scrollCount++;
-                    isScrolling = true;
-                    if (scrollCount === 1) {
-                        scrollStart = window.scrollY;
-                    }
-                    if (lastScrollPosition.length === 0) {
-                        lastScrollPosition = [window.scrollY, 0];
-                        return;
-                    }
-                    lastScrollPosition = [window.scrollY, lastScrollPosition[0]];
-                    if (lastScrollPosition.reduce((a, b) => a-b) > 0)
-                        scrollDirection = 2;
-                    else
-                        scrollDirection = 1;
-                    console.log(scrollDirection);
-                }
-            },
+            // {
+            //     selector: "document",
+            //     animation: (e, el) => {
+            //         scrollCount++;
+            //         if (scrollCount === 1) {
+            //             scrollStart = window.scrollY;
+            //         }
+            //         if (lastScrollPosition.length === 0) {
+            //             lastScrollPosition = [window.scrollY, 0];
+            //             return;
+            //         }
+            //         lastScrollPosition = [window.scrollY, lastScrollPosition[0]];
+            //         if (lastScrollPosition.reduce((a, b) => a-b) > 0)
+            //             scrollDirection = 2;
+            //         else
+            //             scrollDirection = 1;
+            //         console.log(scrollDirection);
+            //
+            //         const scrollList = [section_1, section_2, section_3, section_4];
+            //         const scrollY = window.scrollY;
+            //         scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+            //         if ((scrollList[0] - scrollY) === 0 || isScrolling) {
+            //             return;
+            //         } else if (scrollDirection === 1) {
+            //             isScrolling = true;
+            //             window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
+            //         }else if (scrollDirection === 2) {
+            //             isScrolling = true;
+            //             window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
+            //         }
+            //     }
+            // },
             {
                 selector: "#section_3>.box_available>.right",
                 animation: (e, el) => {
@@ -217,28 +230,39 @@ const animation_index = {
             {
                 selector: "document",
                 animation: (e, el) => {
-                    isScrolling = false;
-                    setTimeout(() => {
-                        if (isScrolling) return;
-                        const scrollList = [section_1, section_2, section_3, section_4];
-                        const scrollY = window.scrollY;
-                        scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-                        if (Math.abs(scrollStart-window.scrollY)>section_height) {
-                            window.scrollTo({ top: scrollList[0], behavior: "smooth" });
-                        }else {
-                            if ((scrollList[0] - scrollY) === 0) {
-                                return;
-                            } else if (scrollDirection === 1) {
-                                window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
-                            }else if (scrollDirection === 2) {
-                                window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
-                            }
-                        }
-                        scrollCount = 0;
-                    }, 1000);
-                },
-                nomobile: null
+                    setTimeout(() => {isScrolling = false;}, 10);
+
+                    const scrollList = [section_1, section_2, section_3, section_4];
+                    const scrollY = window.scrollY;
+                    scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+                    window.scrollTo({ top: scrollList[0]});
+                }
             }
+            // {
+            //     selector: "document",
+            //     animation: (e, el) => {
+            //         isScrolling = false;
+            //         setTimeout(() => {
+            //             if (isScrolling) return;
+            //             const scrollList = [section_1, section_2, section_3, section_4];
+            //             const scrollY = window.scrollY;
+            //             scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+            //             if (Math.abs(scrollStart-window.scrollY)>section_height) {
+            //                 window.scrollTo({ top: scrollList[0], behavior: "smooth" });
+            //             }else {
+            //                 if ((scrollList[0] - scrollY) === 0) {
+            //                     return;
+            //                 } else if (scrollDirection === 1) {
+            //                     window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
+            //                 }else if (scrollDirection === 2) {
+            //                     window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
+            //                 }
+            //             }
+            //             scrollCount = 0;
+            //         }, 1000);
+            //     },
+            //     nomobile: null
+            // }
             // {
             //     selector: "#section_3>.box_available>.right",
             //     animation: (e, el) => {
