@@ -7,8 +7,8 @@ WORKDIR /app
 COPY ./ ./
 
 RUN npm install
+RUN tsc
 
-ENTRYPOINT []
+ENTRYPOINT ["node"]
 
-CMD ["tsc"]
-CMD ["node app.js"]
+CMD ["app.js"]
