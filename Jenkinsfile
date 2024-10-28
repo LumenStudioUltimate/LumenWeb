@@ -14,8 +14,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'LYJ_DockerHub', passwordVariable: 'password', usernameVariable: 'username')]) {
                         sh """
                         echo $password | docker login --username $username --password-stdin
-                        docker build -f Dockerfile -t $username/lumenWeb .
-                        docker push $username/lumenWeb
+                        docker build -f Dockerfile -t $username/lumenweb .
+                        docker push $username/lumenweb
                         """
                     }
                 }
@@ -28,10 +28,10 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'LYJ_DockerHub', passwordVariable: 'password', usernameVariable: 'username')]) {
                         sh """
                         docker ps
-                        docker stop lumenWeb || true
-                        docker rm lumenWeb || true
-                        docker pull $username/lumenWeb
-                        docker run -d --name lumenWeb --restart always -p 9006:3000 $username/lumenWeb
+                        docker stop lumenweb || true
+                        docker rm lumenweb || true
+                        docker pull $username/lumenweb
+                        docker run -d --name lumenweb --restart always -p 9006:3000 $username/lumenweb
                         docker image prune -f
                         """
                     }
