@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM public.ecr.aws/docker/library/node:lts-alpine
 
 RUN apk add tzdata && ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
