@@ -7,7 +7,7 @@ WORKDIR /app
 COPY ./ ./
 
 RUN npm install
-RUN npx tsc
+RUN npm run build
 
 ENTRYPOINT ["node"]
 

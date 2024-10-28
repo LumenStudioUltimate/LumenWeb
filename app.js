@@ -26,7 +26,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
 const https_1 = __importDefault(require("https"));
 const path_1 = __importDefault(require("path"));
 const body_parser_1 = __importDefault(require("body-parser"));
@@ -36,9 +35,9 @@ const http_errors_1 = __importDefault(require("http-errors"));
 const config = __importStar(require("./config.json"));
 const api_route_1 = require("./route/api.route");
 const service_route_1 = require("./route/service.route");
-const PORT = 443;
+const PORT = parseInt(process.env.PORT || "443");
 const app = express.default();
-// view engine setup
+// view engine setup 
 app.set("views", path_1.default.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 app.use(body_parser_1.default.json());
@@ -60,11 +59,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render("error", { error: res.locals.error });
 });
-const server = https_1.default.createServer({
-    ca: fs_1.default.readFileSync(path_1.default.join(__dirname, "./cert/fullchain1.pem")),
-    key: fs_1.default.readFileSync(path_1.default.join(__dirname, "./cert/privkey1.pem")),
-    cert: fs_1.default.readFileSync(path_1.default.join(__dirname, "./cert/cert1.pem"))
-}, app);
+const server = https_1.default.createServer(app);
 server.listen(PORT, () => {
     console.log("Server is running on port " + PORT);
     console.log("https://localhost:" + PORT);
