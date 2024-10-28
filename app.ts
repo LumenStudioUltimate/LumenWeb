@@ -43,9 +43,7 @@ app.use((err: HttpException, req: Request, res: Response, next: NextFunction) =>
     res.render("error", { error: res.locals.error });
 });
 
-const server = http.createServer(app);
-
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log("Server is running on port " + PORT);
-    console.log("https://localhost:" + PORT);
+    console.log("http://localhost:" + PORT);
 });
