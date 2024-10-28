@@ -7,7 +7,6 @@ import * as express from "express";
 import { Request, Response, NextFunction } from "express";
 import createError from "http-errors";
 
-import * as config from "./config.json";
 import { HttpException } from "./map/types";
 import { apiRouter } from "./route/api.route";
 import { serviceRouter } from "./route/service.route";
@@ -37,7 +36,7 @@ app.use((req, res, next) => {
 app.use((err: HttpException, req: Request, res: Response, next: NextFunction) => {
     // set locals, only providing error in development
     res.locals.message = err.message;
-    res.locals.error = config.Project.status === "dev" ? err : {};
+    res.locals.error = process.env.NODE_ENV === "dev" ? err : {};
 
     // render the error page
     res.status(err.status || 500);
