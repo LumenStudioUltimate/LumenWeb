@@ -6,8 +6,7 @@ WORKDIR /app
 
 COPY ./ ./
 
-RUN npm install && npm install typescript -g
-RUN tsc
+RUN npm install && npm install typescript -g && tsc
 
 ENTRYPOINT ["node"]
 
