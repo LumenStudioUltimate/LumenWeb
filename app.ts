@@ -1,5 +1,5 @@
 import fs from "fs";
-import https from "https";
+import http from "https";
 import path from "path";
 
 import bodyParser from "body-parser";
@@ -9,15 +9,15 @@ import { Request, Response, NextFunction } from "express";
 import createError from "http-errors";
 
 import * as config from "./config.json";
-import {HttpException} from "./map/types";
-import {apiRouter} from "./route/api.route";
-import {serviceRouter} from "./route/service.route";
+import { HttpException } from "./map/types";
+import { apiRouter } from "./route/api.route";
+import { serviceRouter } from "./route/service.route";
 
 
-const PORT = 443;
+const PORT = parseInt(process.env.PORT || "443");
 const app = express.default();
 
-// view engine setup
+// view engine setup 
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
@@ -42,16 +42,12 @@ app.use((err: HttpException, req: Request, res: Response, next: NextFunction) =>
 
     // render the error page
     res.status(err.status || 500);
-    res.render("error", {error: res.locals.error});
+    res.render("error", { error: res.locals.error });
 });
 
-const server = https.createServer({
-    ca: fs.readFileSync(path.join(__dirname, "./cert/fullchain1.pem")),
-    key: fs.readFileSync(path.join(__dirname, "./cert/privkey1.pem")),
-    cert: fs.readFileSync(path.join(__dirname, "./cert/cert1.pem"))
-}, app);
+const server = http.createServer(app);
 
 server.listen(PORT, () => {
-    console.log("Server is running on port "+PORT);
-    console.log("https://localhost:"+PORT);
+    console.log("Server is running on port " + PORT);
+    console.log("https://localhost:" + PORT);
 });

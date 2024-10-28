@@ -183,38 +183,38 @@ const animation_index = {
             }
         ],
         scroll: [
-            // {
-            //     selector: "document",
-            //     animation: (e, el) => {
-            //         scrollCount++;
-            //         if (scrollCount === 1) {
-            //             scrollStart = window.scrollY;
-            //         }
-            //         if (lastScrollPosition.length === 0) {
-            //             lastScrollPosition = [window.scrollY, 0];
-            //             return;
-            //         }
-            //         lastScrollPosition = [window.scrollY, lastScrollPosition[0]];
-            //         if (lastScrollPosition.reduce((a, b) => a-b) > 0)
-            //             scrollDirection = 2;
-            //         else
-            //             scrollDirection = 1;
-            //         console.log(scrollDirection);
-            //
-            //         const scrollList = [section_1, section_2, section_3, section_4];
-            //         const scrollY = window.scrollY;
-            //         scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-            //         if ((scrollList[0] - scrollY) === 0 || isScrolling) {
-            //             return;
-            //         } else if (scrollDirection === 1) {
-            //             isScrolling = true;
-            //             window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
-            //         }else if (scrollDirection === 2) {
-            //             isScrolling = true;
-            //             window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
-            //         }
-            //     }
-            // },
+            {
+                selector: "document",
+                animation: (e, el) => {
+                    scrollCount++;
+                    if (scrollCount === 1) {
+                        scrollStart = window.scrollY;
+                    }
+                    if (lastScrollPosition.length === 0) {
+                        lastScrollPosition = [window.scrollY, 0];
+                        return;
+                    }
+                    lastScrollPosition = [window.scrollY, lastScrollPosition[0]];
+                    if (lastScrollPosition.reduce((a, b) => a-b) > 0)
+                        scrollDirection = 2;
+                    else
+                        scrollDirection = 1;
+                    console.log(scrollDirection);
+
+                    // const scrollList = [section_1, section_2, section_3, section_4];
+                    // const scrollY = window.scrollY;
+                    // scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+                    // if ((scrollList[0] - scrollY) === 0 || isScrolling) {
+                    //     return;
+                    // } else if (scrollDirection === 1) {
+                    //     isScrolling = true;
+                    //     window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
+                    // }else if (scrollDirection === 2) {
+                    //     isScrolling = true;
+                    //     window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
+                    // }
+                }
+            },
             {
                 selector: "#section_3>.box_available>.right",
                 animation: (e, el) => {
@@ -227,42 +227,42 @@ const animation_index = {
             }
         ],
         scrollend: [
-            {
-                selector: "document",
-                animation: (e, el) => {
-                    setTimeout(() => {isScrolling = false;}, 10);
-
-                    const scrollList = [section_1, section_2, section_3, section_4];
-                    const scrollY = window.scrollY;
-                    scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-                    window.scrollTo({ top: scrollList[0]});
-                }
-            }
             // {
             //     selector: "document",
             //     animation: (e, el) => {
-            //         isScrolling = false;
-            //         setTimeout(() => {
-            //             if (isScrolling) return;
-            //             const scrollList = [section_1, section_2, section_3, section_4];
-            //             const scrollY = window.scrollY;
-            //             scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
-            //             if (Math.abs(scrollStart-window.scrollY)>section_height) {
-            //                 window.scrollTo({ top: scrollList[0], behavior: "smooth" });
-            //             }else {
-            //                 if ((scrollList[0] - scrollY) === 0) {
-            //                     return;
-            //                 } else if (scrollDirection === 1) {
-            //                     window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
-            //                 }else if (scrollDirection === 2) {
-            //                     window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
-            //                 }
-            //             }
-            //             scrollCount = 0;
-            //         }, 1000);
-            //     },
-            //     nomobile: null
+            //         setTimeout(() => {isScrolling = false;}, 10);
+            //
+            //         const scrollList = [section_1, section_2, section_3, section_4];
+            //         const scrollY = window.scrollY;
+            //         scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+            //         window.scrollTo({ top: scrollList[0]});
+            //     }
             // }
+            {
+                selector: "document",
+                animation: (e, el) => {
+                    isScrolling = false;
+                    setTimeout(() => {
+                        if (isScrolling) return;
+                        const scrollList = [section_1, section_2, section_3, section_4];
+                        const scrollY = window.scrollY;
+                        scrollList.sort((a, b) => Math.abs(a - scrollY) - Math.abs(b - scrollY));
+                        if (Math.abs(scrollStart-window.scrollY)>section_height) {
+                            window.scrollTo({ top: scrollList[0], behavior: "smooth" });
+                        }else {
+                            if ((scrollList[0] - scrollY) === 0) {
+                                return;
+                            } else if (scrollDirection === 1) {
+                                window.scrollTo({ top: scrollList[0]-scrollList[1]>0?scrollList[1]:scrollList[0], behavior: "smooth" });
+                            }else if (scrollDirection === 2) {
+                                window.scrollTo({ top: scrollList[0]-scrollList[1]<0?scrollList[1]:scrollList[0], behavior: "smooth" });
+                            }
+                        }
+                        scrollCount = 0;
+                    }, 100);
+                },
+                nomobile: null
+            }
             // {
             //     selector: "#section_3>.box_available>.right",
             //     animation: (e, el) => {
