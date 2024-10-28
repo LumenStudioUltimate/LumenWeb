@@ -12,7 +12,7 @@ import { apiRouter } from "./route/api.route";
 import { serviceRouter } from "./route/service.route";
 
 
-const PORT = parseInt(process.env.PORT || "443");
+const PORT = parseInt(process.env.PORT || "3000");
 const app = express.default();
 
 // view engine setup
