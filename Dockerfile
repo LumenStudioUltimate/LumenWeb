@@ -6,8 +6,8 @@ WORKDIR /app
 
 COPY ./ ./
 
-RUN npm install --only=production && npm cache clean --force && npm install typescript -g
-RUN npm run build --force
+RUN npm install && npm install typescript -g
+RUN npm run build
 
 ENTRYPOINT ["node"]
 
