@@ -1,4 +1,3 @@
-import fs from "fs";
 import http from "https";
 import path from "path";
 
@@ -17,7 +16,7 @@ import { serviceRouter } from "./route/service.route";
 const PORT = parseInt(process.env.PORT || "443");
 const app = express.default();
 
-// view engine setup 
+// view engine setup
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
